@@ -58,9 +58,8 @@ app.get("/",(req,res)=>{
     res.render("index")
   })
 
-const PORT = 5000;
 
-app.listen(PORT,async()=>{
+app.listen(process.env.PORT || 5000,async()=>{
     try{
        await connect();
     }catch(err){
