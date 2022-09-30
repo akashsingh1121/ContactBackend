@@ -26,12 +26,13 @@ app.use(bodyparser.json({limit:"50mb"}));
 app.use(bodyparser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.json());
 app.use("/users", User);
-app.post("/users/upload",uploads.single("csv"),async (req,res) =>{
+app.post("/upload",uploads.single("csv"),async (req,res) =>{
     try{
        const csvFilePath=req.file.path
        csv()
        .fromFile(csvFilePath)
        .then((jsonObj)=>{
+          console.log(jsonObj)
            Usermodel.insertMany(jsonObj)
            return res.send({results:"Import File successfully"})
        })
