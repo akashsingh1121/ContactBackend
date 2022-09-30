@@ -53,8 +53,10 @@ app.get("/export",async(req,res)=>{
         return res.status(500).send(err.message)
     }
 })
-
-
+app.set("view engine","hbs")
+app.get("/",(req,res)=>{
+    res.render("index")
+  })
 
 const PORT = 5000;
 
